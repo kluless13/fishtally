@@ -5,8 +5,14 @@ ___File Structure
 |__Multiclass_wts.pt [for Step 2]
 |
 |__lionfish_wt.pt [for step 3]
-|
-|__cots_wt.pt [for step 3]
+
+What I have done so far:
+- compared yolov7 and yolov8 for an invasive species (Lionfish) and a marine pest (COTS)
+- created a fish counting algorithm that tracks a specific species, and then counts automatically, but with only one line
+- applied this process to the invasive lionfish species
+- add more lines as thresholds to track and count fish movement
+- make polygon and track within that
+- address limitations
 
 ### Methodology
 
@@ -19,8 +25,9 @@ ___File Structure
 - Result 1: Yolov8 superior :white_check:
 - Step 2: FishTally demo w multiclass model - 4 species
 - Result 2: FishTally works; Result 2A: freedom of class choice for counter; Result 2B: multiclass usage
-- Step 3: Create weights for invasive species - lionfish & COTs 
-- Result 3: AI counter for invasive species
+- Step 3: Customize FishTally to the max: 
+- Step 4: Create weights for invasive species - lionfish & COTs 
+- Result 4: AI counter for invasive species
 
 ### Discussion
 
