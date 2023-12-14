@@ -1,10 +1,30 @@
 # Step 1 of using AI to replace marine scientists
 
+FishTally is highly customisable tool that can automate fish counting, at a species level. This tool can be:
+- used by marine ecologists to speed up and automate surveying to better study and understand population dynamics
+- installed in ROVs and AUVs to conduct counting in real time
+- used outside of marine ecology, to survey sea floors, map the seabed and create a reliable baseline database
+
+Limitations:
+- datasets for model training
+- model weights 
+- overfitting
+- video capturing techniques
+- source video quality
+
 ___File Structure
 |
-|__Multiclass_wts.pt [for Step 2]
+|__ft_demo_single_line
 |
-|__lionfish_wt.pt [for step 3]
+|__ft_single_line_invasive
+|
+|__ft_custom_multiple_lines
+|
+|__ft_custom_polygon 
+
+Notebooks with significance:
+- fishtally-demo-single-line -> using single line as a threshold to show pipeline works for single and multi class 
+- fishtally-invasive -> single line threshold applied to fishtally
 
 What I have done so far:
 - compared yolov7 and yolov8 for an invasive species (Lionfish) and a marine pest (COTS)
@@ -13,6 +33,10 @@ What I have done so far:
 - add more lines as thresholds to track and count fish movement
 - make polygon and track within that
 - address limitations
+
+What I would like to add:
+- turn FishTally into CLI command to automate process
+- have weights ready for use
 
 ### Methodology
 
