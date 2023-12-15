@@ -2,6 +2,7 @@ import numpy as np
 import supervision as sv
 from ultralytics import YOLO
 from tqdm import tqdm
+import cv2
 
 def polygon_threshold(model_weights, source_video_path, target_video_path, polygon_points):
     # Load the YOLO model

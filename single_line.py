@@ -1,121 +1,70 @@
-import os
-import sys
+import cv2
+from collections import defaultdict
+import supervision as sv
 from ultralytics import YOLO
-from supervision.draw.color import ColorPalette
-from supervision.geometry.dataclasses import Point
-from supervision.video.dataclasses import VideoInfo
-from supervision.video.source import get_video_frames_generator
-from supervision.video.sink import VideoSink
-from supervision.tools.detections import Detections, BoxAnnotator
-from supervision.tools.line_counter import LineCounter, LineCounterAnnotator
-from yolox.tracker.byte_tracker import BYTETracker, STrack
-from onemetric.cv.utils.iou import box_iou_batch
-from dataclasses import dataclass
-from typing import List
-import numpy as np
-from tqdm import tqdm
 
-# Define the BYTETracker arguments
-@dataclass(frozen=True)
-class BYTETrackerArgs:
-    track_thresh: float = 0.25
-    track_buffer: int = 30
-    match_thresh: float = 0.8
-    aspect_ratio_thresh: float = 3.0
-    min_box_area: float = 1.0
-    mot20: bool = False
-
-# Function for single line threshold counting
-def single_line_threshold(model_weights, source_video_path, target_video_path, line_start, line_end, class_id):
-    # Load the model
+def single_line_threshold(model_weights, source_video_path, target_video_path, line_start, line_end):
+    # Load the YOLOv8 model
     model = YOLO(model_weights)
-    model.fuse()
 
-    # Create BYTETracker instance
-    byte_tracker = BYTETracker(BYTETrackerArgs())
+    # Set up video capture
+    cap = cv2.VideoCapture(source_video_path)
 
-    # Setup video capture and other initializations
-    video_info = VideoInfo.from_video_path(source_video_path)
-    generator = get_video_frames_generator(source_video_path)
-    line_counter = LineCounter(start=line_start, end=line_end)
-    box_annotator = BoxAnnotator(color=ColorPalette.default(), thickness=4, text_thickness=4, text_scale=2)
-    line_annotator = LineCounterAnnotator(thickness=4, text_thickness=2, text_scale=1)
+    # Define line coordinates
+    START = sv.Point(*line_start)
+    END = sv.Point(*line_end)
 
-    # Open target video file
-    with VideoSink(target_video_path, video_info) as sink:
-        # Loop over video frames
-        for frame in tqdm(generator, total=video_info.total_frames):
-            # Model prediction and conversion to supervision Detections
-            results = model(frame)
-            detections = Detections(
-                xyxy=results[0].boxes.xyxy.cpu().numpy(),
-                confidence=results[0].boxes.conf.cpu().numpy(),
-                class_id=results[0].boxes.cls.cpu().numpy().astype(int)
-            )
+    # Store the track history
+    track_history = defaultdict(lambda: [])
 
-            # Filtering out detections with unwanted classes
-            mask = np.isin(detections.class_id, class_id)
-            detections.filter(mask=mask, inplace=True)
+    # Dictionary to keep track of objects that have crossed the line
+    crossed_objects = {}
 
-            # Converts detections to the format for ByteTrack
-            def detections2boxes(detections):
-                return np.hstack((detections.xyxy, detections.confidence[:, np.newaxis]))
+    # Open a video sink for the output video
+    video_info = sv.VideoInfo.from_video_path(source_video_path)
+    with sv.VideoSink(target_video_path, video_info) as sink:
+        while cap.isOpened():
+            success, frame = cap.read()
+            if not success:
+                break
 
-            # Converts tracks to the format for ByteTrack
-            def tracks2boxes(tracks):
-                return np.array([track.tlbr for track in tracks], dtype=float)
+            # Run YOLOv8 tracking on the frame
+            results = model.track(frame, classes=[], persist=True, save=True, tracker="bytetrack.yaml")
 
-            # Tracking detections
-            tracks = byte_tracker.update(
-                output_results=detections2boxes(detections),
-                img_info=frame.shape,
-                img_size=frame.shape
-            )
+            # Process detections and tracks
+            boxes = results[0].boxes.xywh.cpu()
+            track_ids = results[0].boxes.id.int().cpu().tolist()
 
-            # Matches detections with tracks
-            def match_detections_with_tracks(detections, tracks):
-                if not np.any(detections.xyxy) or len(tracks) == 0:
-                    return np.empty((0,))
-                
-                tracks_boxes = tracks2boxes(tracks)
-                iou = box_iou_batch(tracks_boxes, detections.xyxy)
-                track2detection = np.argmax(iou, axis=1)
+            annotated_frame = results[0].plot()
 
-                tracker_ids = [None] * len(detections)
-                for tracker_index, detection_index in enumerate(track2detection):
-                    if iou[tracker_index, detection_index] != 0:
-                        tracker_ids[detection_index] = tracks[tracker_index].track_id
+            # Count objects crossing the line
+            for box, track_id in zip(boxes, track_ids):
+                x, y, w, h = box.numpy()
+                track = track_history[track_id]
+                track.append((x, y))  # x, y center point
 
-                return tracker_ids
+                if len(track) > 30:  # retain 30 tracks for 30 frames
+                    track.pop(0)
 
-            # Updating tracker IDs in detections
-            tracker_ids = match_detections_with_tracks(detections, tracks)
-            detections.tracker_id = np.array(tracker_ids)
+                # Check if the object crosses the line
+                if START.x < x < END.x and abs(y - START.y) < 5:
+                    if track_id not in crossed_objects:
+                        crossed_objects[track_id] = True
+                        # Annotate the object as it crosses the line
+                        cv2.rectangle(annotated_frame, (int(x - w / 2), int(y - h / 2)), (int(x + w / 2), int(y + h / 2)), (0, 255, 0), 2)
 
-            # Filtering out detections without trackers
-            mask = np.array([tracker_id is not None for tracker_id in detections.tracker_id], dtype=bool)
-            detections.filter(mask=mask, inplace=True)
+            # Draw the line and write the count on the frame
+            cv2.line(annotated_frame, (START.x, START.y), (END.x, END.y), (0, 255, 0), 2)
+            cv2.putText(annotated_frame, f"Objects crossed line: {len(crossed_objects)}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
-            # Updating line counter
-            line_counter.update(detections=detections)
+            # Write the frame with annotations to the output video
+            sink.write_frame(annotated_frame)
 
-            # Formatting custom labels for detections
-            labels = [
-                f"#{tracker_id} {model.model.names[class_id]} {confidence:0.2f}"
-                for _, confidence, class_id, tracker_id in detections
-            ]
+    # Release the video capture
+    cap.release()
 
-            # Annotate and display frame
-            frame = box_annotator.annotate(frame=frame, detections=detections, labels=labels)
-            line_annotator.annotate(frame=frame, line_counter=line_counter)
-
-            # Write frame to the output video
-            sink.write_frame(frame)
-
-    # Output the final count
-    final_count = line_counter.get_count()
-    print(f"Total fish count: {final_count}")
-    return final_count
+    # Return count for the line
+    return len(crossed_objects)
 
 # Example usage of the function
-# single_line_threshold("path_to_model_weights.pt", "path_to_source_video.mp4", "path_to_target_video.mp4", Point(10,100), Point(1200, 700), [3])
+# single_line_threshold('path_to_model_weights.pt', 'path_to_source_video.mp4', 'path_to_target_video.mp4', (x1, y1), (x2, y2))

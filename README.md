@@ -38,19 +38,11 @@ Ensure you have the following prerequisites installed on your system:
 
    ```bash
    chmod +x setup.sh
+   ./setup.sh
    ```
 
-3. **Install Python Dependencies**
 
-   Install the required Python packages using the `requirements.txt` file.
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-   This command installs all necessary Python packages for `fishtally.py`.
-
-4. **Verification**
+3. **Verification**
 
    To verify that the installation is successful, you can run a simple test command or check the versions of critical components like Python, Git, and Pip.
 
