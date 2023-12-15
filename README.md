@@ -7,10 +7,6 @@ Objective: Use yolov8 to build a tracking model. Model weights can be used by th
     <img src="https://github.com/kluless13/paper2/blob/main/Assets/tang-tracker%20(2).gif" width="49%"/>
 </div>
 
-Certainly! Below is a setup guide suitable for inclusion in a `README.md` file for your fish tallying tool, `fishtally.py`. This guide covers the necessary steps to get the tool up and running.
-
----
-
 ## Setup Guide
 
 ### Prerequisites
