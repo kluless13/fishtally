@@ -1,0 +1,14 @@
+numpy
+opencv-python
+torch
+YOLO
+ultralytics
+matplotlib
+supervision
+cython_bbox
+onemetric
+loguru
+lap
+thop
+pandas
+scipy

@@ -5,6 +5,13 @@ FishTally is highly customisable tool that can automate fish counting, at a spec
 - installed in ROVs and AUVs to conduct counting in real time
 - used outside of marine ecology, to survey sea floors, map the seabed and create a reliable baseline database
 
+CLI tool plan:
+- have a custom .py file with the right args
+- args: path to video/path to wts/path to detector type - single line/multi line/polygon
+- if: single line/set threshold level after checking matplotlib coords - 2 points
+- if: multi line/same procedure as before - multiple 2 points
+- if: polygon/as as before - 4 point arrays
+
 Limitations:
 - datasets for model training
 - model weights 
