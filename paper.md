@@ -31,19 +31,21 @@ ___File Structure
 
 Notebooks with significance:
 - fishtally-demo-single-line -> using single line as a threshold to show pipeline works for single and multi class 
-- fishtally-invasive -> single line threshold applied to fishtally
+- fishtally-invasive -> single line threshold applied to an invasive species
+- fishtally_demo_multio_lines ->
+- fishtally_polyon ->
 
 What I have done so far:
-- compared yolov7 and yolov8 for an invasive species (Lionfish) and a marine pest (COTS)
-- created a fish counting algorithm that tracks a specific species, and then counts automatically, but with only one line
-- applied this process to the invasive lionfish species
-- add more lines as thresholds to track and count fish movement
+- ~compared yolov7 and yolov8 for an invasive species (Lionfish) and a marine pest (COTS)~
+- ~created a fish counting algorithm that tracks a specific species, and then counts automatically, but with only one line~
+- ~applied this process to the invasive lionfish species~
+- ~add more lines as thresholds to track and count fish movement~
 - make polygon and track within that
 - address limitations
 
 What I would like to add:
 - turn FishTally into CLI command to automate process
-- have weights ready for use
+- ~have weights ready for use~
 
 ### Methodology
 
@@ -57,8 +59,7 @@ What I would like to add:
 - Step 2: FishTally demo w multiclass model - 4 species
 - Result 2: FishTally works; Result 2A: freedom of class choice for counter; Result 2B: multiclass usage
 - Step 3: Customize FishTally to the max: 
-- Step 4: Create weights for invasive species - lionfish & COTs 
-- Result 4: AI counter for invasive species
+- Result 3: Have CLI tool ready for max use
 
 ### Discussion
 
