@@ -3,7 +3,7 @@ from collections import defaultdict
 import supervision as sv
 from ultralytics import YOLO
 
-def single_line_threshold(model_weights, source_video_path, target_video_path, line_start, line_end):
+def single_line_threshold(model_weights, source_video_path, target_video_path, line_start, line_end, class_id):
     # Load the YOLOv8 model
     model = YOLO(model_weights)
 
@@ -29,7 +29,7 @@ def single_line_threshold(model_weights, source_video_path, target_video_path, l
                 break
 
             # Run YOLOv8 tracking on the frame
-            results = model.track(frame, classes=[], persist=True, save=True, tracker="bytetrack.yaml")
+            results = model.track(frame, classes=[class_id], persist=True, save=True, tracker="bytetrack.yaml")
 
             # Process detections and tracks
             boxes = results[0].boxes.xywh.cpu()

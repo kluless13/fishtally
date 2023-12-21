@@ -52,13 +52,29 @@ Certainly! Here's a guide for running `fishtally.py`, which can be included in y
 
 ---
 
-## Running `fishtally.py`
+# Running FishTally
 
-### Usage Instructions
+This repository contains tools for detecting and counting fish in video footage using YOLO-based models. There are two main scripts: `fishtally.py` for processing videos and `list_classes.py` for listing available classes in the YOLO model.
 
-The `fishtally.py` tool is a command-line application that can be used for fish counting in videos using different detection methods (single line, multiple lines, and polygon). 
+## Usage
 
-To use the tool, follow these steps:
+### Listing Available Classes
+
+Before using the fish tallying tool, you can list the available classes in your YOLO model. This will help you identify the correct class ID for detection.
+
+1. **List Classes**
+
+   Run `list_classes.py` with the path to your model weights:
+
+   ```bash
+   python list_classes.py --model_weights <path_to_weights>
+   ```
+
+   Replace `<path_to_weights>` with the path to your YOLO model weights file. This will print out the class names and their corresponding indices.
+
+### Running the Fish Tallying Tool
+
+After identifying the correct class ID, you can proceed to use `fishtally.py`.
 
 1. **Open the Terminal**
 
@@ -69,38 +85,44 @@ To use the tool, follow these steps:
    Use the following command structure to run the tool:
 
    ```bash
-   python fishtally.py --model_weights <path_to_weights> --source_video <path_to_source_video> --target_video <path_to_output_video> --detector_type <detector_type> [additional_arguments]
+   python fishtally.py --model_weights <path_to_weights> --source_video <path_to_source_video> --target_video <path_to_output_video> --detector_type <detector_type> --class_id <class_id> [additional_arguments]
    ```
 
-   Replace `<path_to_weights>`, `<path_to_source_video>`, and `<path_to_output_video>` with the respective paths. For `<detector_type>`, choose from `single_line`, `multi_line`, or `polygon`.
+   Replace `<path_to_weights>`, `<path_to_source_video>`, and `<path_to_output_video>` with the respective paths. For `<detector_type>`, choose from `single_line`, `multi_line`, or `polygon`. Replace `<class_id>` with the ID of the class you want to detect.
 
-   - For `single_line` and `multi_line`, you need to specify line coordinates. 
+   - For `single_line` and `multi_line`, specify the line coordinates.
    - For `polygon`, provide the polygon points.
 
 3. **Example Commands**
 
-   Here are some example commands for each detector type:
-
    - **Single Line:**
      ```bash
-     python fishtally.py --model_weights weights.pt --source_video source.mp4 --target_video output.mp4 --detector_type single_line --line_start 100 200 --line_end 300 400
+     python fishtally.py --model_weights weights.pt --source_video source.mp4 --target_video output.mp4 --detector_type single_line --line_start 100 200 --line_end 300 400 --class_id 3
      ```
 
    - **Multiple Lines:**
      ```bash
-     python fishtally.py --model_weights weights.pt --source_video source.mp4 --target_video output.mp4 --detector_type multi_line --line_start 100 200 --line_end 300 400 --line_start2 500 600 --line_end2 700 800
+     python fishtally.py --model_weights weights.pt --source_video source.mp4 --target_video output.mp4 --detector_type multi_line --line_start 100 200 --line_end 300 400 --line_start2 500 600 --line_end2 700 800 --class_id 3
      ```
 
    - **Polygon:**
      ```bash
-     python fishtally.py --model_weights weights.pt --source_video source.mp4 --target_video output.mp4 --detector_type polygon --polygon_points 100 200 300 400 500 600 700 800
+     python fishtally.py --model_weights weights.pt --source_video source.mp4 --target_video output.mp4 --detector_type polygon --polygon_points 100 200 300 400 500 600 700 800 --class_id 3
      ```
 
-    Replace the coordinates in these examples with those relevant to your specific use case.
+    Replace the coordinates and the class ID in these examples with those relevant to your specific use case.
 
 4. **Viewing the Results**
 
-   After running the command, the tool will process the video and output the results to the path specified in `--target_video`. Check this file to view the results of the fish counting process.
+   After running the command, the tool will process the video and output the results to the path specified in `--target_video`. Check this file to view the results of the fish counting process based on the specified class ID.
+
+## Conclusion
+
+This toolset provides a versatile way to analyze video data for fish detection and counting. Ensure you have the correct model weights and video file format for optimal performance.
+
+---
+
+This README should guide the users effectively through the process of using both scripts. Make sure to include any additional specific setup or dependency instructions if needed.
 
 ### Notes
 

@@ -1,50 +1,53 @@
+import argparse
+from ultralytics import YOLO
 import numpy as np
 import supervision as sv
-from ultralytics import YOLO
-from tqdm import tqdm
-import cv2
 
-def polygon_threshold(model_weights, source_video_path, target_video_path, polygon_points):
-    # Load the YOLO model
-    model = YOLO(model_weights)
+class CountObject:
 
-    # Define the polygon zone
-    polygon = np.array(polygon_points)  # polygon_points should be a list of (x, y) tuples
-    video_info = sv.VideoInfo.from_video_path(source_video_path)
-    zone = sv.PolygonZone(polygon=polygon, frame_resolution_wh=video_info.resolution_wh)
+    def __init__(self, input_video_path, output_video_path, model_weights, polygon_points, class_id):
+        self.model = YOLO(model_weights)
+        self.class_id = class_id
+        
+        # Initialize polygon zone
+        self.polygon = np.array(polygon_points)
+        self.input_video_path = input_video_path
+        self.output_video_path = output_video_path
 
-    # Annotators
-    box_annotator = sv.BoxAnnotator(thickness=4, text_thickness=4, text_scale=2)
-    zone_annotator = sv.PolygonZoneAnnotator(zone=zone, color=sv.Color.white(), thickness=6, text_thickness=6, text_scale=4)
+        self.video_info = sv.VideoInfo.from_video_path(input_video_path)
+        self.zone = sv.PolygonZone(polygon=self.polygon, frame_resolution_wh=self.video_info.resolution_wh)
 
-    # Video processing
-    cap = cv2.VideoCapture(source_video_path)
-    with sv.VideoSink(target_video_path, video_info) as sink:
-        while cap.isOpened():
-            success, frame = cap.read()
-            if not success:
-                break
+        # Initialize annotators
+        self.box_annotator = sv.BoxAnnotator(thickness=4, text_thickness=4, text_scale=2)
+        self.zone_annotator = sv.PolygonZoneAnnotator(zone=self.zone, color=sv.Color.white(), thickness=6, text_thickness=6, text_scale=4)
 
-            # Detect and filter detections within the polygon
-            results = model(frame, imgsz=1280)[0]
-            detections = sv.Detections.from_yolov8(results)
-            zone.trigger(detections=detections)
+    def process_frame(self, frame: np.ndarray, _) -> np.ndarray:
+        # Detect objects and filter based on class_id
+        results = self.model(frame, imgsz=1280)[0]
+        detections = sv.Detections.from_ultralytics(results)
+        detections = detections[detections.class_id == self.class_id]
+        self.zone.trigger(detections=detections)
 
-            # Annotate the frame
-            labels = [f"{model.names[class_id]} {confidence:0.2f}" for _, confidence, class_id, _ in detections]
-            frame = box_annotator.annotate(scene=frame, detections=detections, labels=labels)
-            frame = zone_annotator.annotate(scene=frame)
+        # Annotate the frame
+        labels = [f"Class ID: {self.class_id}" in detections]
+        frame = self.box_annotator.annotate(scene=frame, detections=detections, labels=labels)
+        frame = self.zone_annotator.annotate(scene=frame)
 
-            # Write the frame to the output video
-            sink.write_frame(frame)
+        return frame
+    
+    def process_video(self):
+        sv.process_video(source_path=self.input_video_path, target_path=self.output_video_path, callback=self.process_frame)
 
-    # Release the video capture
-    cap.release()
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Polygon-based Video Processing Tool')
+    parser.add_argument('--source_video', required=True, help='Path to the source video file')
+    parser.add_argument('--target_video', required=True, help='Path for the output video file')
+    parser.add_argument('--model_weights', required=True, help='Path to the model weights file')
+    parser.add_argument('--class_id', type=int, required=True, help='Class ID to detect')
+    parser.add_argument('--polygon_points', nargs='+', type=int, required=True, help='List of points (x, y) defining the polygon')
 
-    # Output the total count
-    total_count = zone.get_count()
-    print(f"Total count within polygon: {total_count}")
-    return total_count
+    args = parser.parse_args()
+    polygon_points = list(zip(args.polygon_points[0::2], args.polygon_points[1::2]))  # Convert flat list to list of tuples
 
-# Example usage of the function
-# polygon_threshold('path_to_model_weights.pt', 'path_to_source_video.mp4', 'path_to_target_video.mp4', [(x1, y1), (x2, y2), (x3, y3), (x4, y4)])
+    obj = CountObject(args.source_video, args.target_video, args.model_weights, polygon_points, args.class_id)
+    obj.process_video()

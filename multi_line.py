@@ -5,7 +5,7 @@ from ultralytics import YOLO
 import numpy as np
 from tqdm import tqdm
 
-def multi_line_threshold(model_weights, source_video_path, target_video_path, line1_start, line1_end, line2_start, line2_end):
+def multi_line_threshold(model_weights, source_video_path, target_video_path, line1_start, line1_end, line2_start, line2_end, class_id):
     # Load the YOLOv8 model
     model = YOLO(model_weights)
 
@@ -34,7 +34,7 @@ def multi_line_threshold(model_weights, source_video_path, target_video_path, li
                 break
 
             # Run YOLOv8 tracking on the frame
-            results = model.track(frame, classes=[], persist=True, save=True, tracker="bytetrack.yaml")
+            results = model.track(frame, classes=[class_id], persist=True, save=True, tracker="bytetrack.yaml")
 
             # Process detections and tracks
             boxes = results[0].boxes.xywh.cpu()
