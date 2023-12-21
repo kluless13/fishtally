@@ -48,10 +48,6 @@ Ensure you have the following prerequisites installed on your system:
    pip --version
    ```
 
-Certainly! Here's a guide for running `fishtally.py`, which can be included in your `README.md` file or other documentation. This guide will provide instructions on how to use the command-line interface (CLI) of the tool.
-
----
-
 # Running FishTally
 
 This repository contains tools for detecting and counting fish in video footage using YOLO-based models. There are two main scripts: `fishtally.py` for processing videos and `list_classes.py` for listing available classes in the YOLO model.
@@ -116,14 +112,6 @@ After identifying the correct class ID, you can proceed to use `fishtally.py`.
 
    After running the command, the tool will process the video and output the results to the path specified in `--target_video`. Check this file to view the results of the fish counting process based on the specified class ID.
 
-## Conclusion
-
-This toolset provides a versatile way to analyze video data for fish detection and counting. Ensure you have the correct model weights and video file format for optimal performance.
-
----
-
-This README should guide the users effectively through the process of using both scripts. Make sure to include any additional specific setup or dependency instructions if needed.
-
 ### Notes
 
 - Ensure that the paths to the model weights and videos are correct.
@@ -148,7 +136,7 @@ Model trained on a multiclass dataset (listed below),
 - Classes: (1 check-mark: model tested on video specific to species; 2 check-marks: tracker built)
   - Blue-Tang, Paracanthurus hepatus
   - Orange-Clown, Amphiprion percula :white_check_mark:
-  - Three-Striped-Damselfish, Dascyllus aruanus :white_check_mark:
+  - Three-Striped-Damselfish, Dascyllus aruanus :white_check_mark :white_check_mark:
   - Yellow-Tang, Zebrasoma flavescens :white_check_mark: :white_check_mark:
 
 Videos in Asset folder.
