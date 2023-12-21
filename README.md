@@ -139,4 +139,4 @@ Model trained on a multiclass dataset (listed below),
   - Three-Striped-Damselfish, Dascyllus aruanus :white_check_mark :white_check_mark:
   - Yellow-Tang, Zebrasoma flavescens :white_check_mark: :white_check_mark:
 
-Videos in Asset folder.
+Result videos in Asset folder.

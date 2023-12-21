@@ -12,9 +12,6 @@ CLI tool plan:
 - if: multi line/same procedure as before - multiple 2 points
 - if: polygon/as as before - 4 point arrays
 
-#TODO:
-make classes an argument
-
 Limitations:
 - datasets for model training
 - model weights 
@@ -80,6 +77,7 @@ The tool has all components needed to customise it in any way one can think of, 
 - the CLI version of this tool is for the user to play around with the three modes: single line, multi line and polygon zone.
 - the CLI tool is built upon the prototype and can be enhanced and optimised based on the task at hand. A scenario where a camera is being towed to check for lionfish may call for an implementation where there are two or three lines strategically placed within the frame. Here the idea would be to accurately capture the presence of the species, rather than double counting. In a case where population dynamics are being studied, fish count needs to be as accurate as possible and for such a case, anti-double counting measures can be intelligently implemented, such as the in and out feature and/or threshold lines at the left and right edges of a forward moving camera's frame. 
 
+Ofc, this tool can be made better, prettier even but it works!
 
 ### Discussion
 
