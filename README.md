@@ -4,8 +4,8 @@ Objective: Use yolov8 to build a tracking model. Model weights can be used by th
 
 Here is FishTally being used on a video of Yellow Tang.
 <div align="center">
-    <img src="https://github.com/kluless13/paper2/blob/main/Assets/Tang-result.gif" width="49%"/>
-    <img src="https://github.com/kluless13/paper2/blob/main/Assets/tang-tracker%20(2).gif" width="49%"/>
+   <img src="https://github.com/kluless13/paper2/blob/main/Assets/Tang-result.gif" width="49%"/>
+   <img src="https://github.com/kluless13/paper2/blob/main/Assets/tang-tracker%20(2).gif" width="49%"/>
 </div>
 
 FishTally's tracker has also been used for other classes, here is an example for the three-striped damselfish.
@@ -157,5 +157,6 @@ After identifying the correct class ID, you can proceed to use `fishtally.py`.
 
 - Ensure that the paths to the model weights and videos are correct.
 - The coordinates for lines or polygons should be adjusted based on the requirements of your specific task.
-
-Model trained on a multiclass dataset (listed below), 
+- The tool can be used from the jupyter notebooks as well, in case more customisation is required.
+- Model weights are necessary before running the tool.
+- There can be more than 1 polygon, this is the first iteration of FishTally and I will be updating this as I go.
