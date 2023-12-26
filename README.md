@@ -10,30 +10,30 @@ Here is FishTally being used on a video of Yellow Tang.
 
 FishTally's tracker has also been used for other classes, here is an example for the three-striped damselfish.
 <div align="center">
-    <img src="https://github.com/kluless13/paper2/blob/main/Assets/damselfish.gif" width="49%"/>
-    <img src="https://github.com/kluless13/paper2/blob/main/Assets/damselfish-tracker.gif" width="49%"/>
+   <img src="https://github.com/kluless13/paper2/blob/main/Assets/damselfish.gif" width="49%"/>
+   <img src="https://github.com/kluless13/paper2/blob/main/Assets/damselfish-tracker.gif" width="49%"/>
 </div>
 
 An example for FishTally would be to use it to count invasive species, such as Lionfish.
 <div align="center">
-    <img src="https://github.com/kluless13/paper2/blob/main/Assets/lionfish.gif">
+   <img src="https://github.com/kluless13/paper2/blob/main/Assets/lionfish.gif">
 </div>
 
 Here is a test to check if the tool worked at a multi-species level:
 <div align="center">
-    <img src="https://github.com/kluless13/paper2/blob/main/Assets/multiclass.gif">
+   <img src="https://github.com/kluless13/paper2/blob/main/Assets/multiclass.gif">
 </div>
 
 FishTally goes beyond a single line threshold, it contains source code to adjust for more than one line, and keep a count for each line used.
 <div align="center">
-    <img src="https://github.com/kluless13/paper2/blob/main/Assets/2lines.gif" width="49%"/>
-    <img src="https://github.com/kluless13/paper2/blob/main/Assets/3lines
+   <img src="https://github.com/kluless13/paper2/blob/main/Assets/2lines.gif" width="49%"/>
+   <img src="https://github.com/kluless13/paper2/blob/main/Assets/3lines
     .gif" width="49%"/>
 </div>
 
 Polygon zones can also be introduced to check species count in a particular zone. So far, FishTally has source code for 1 polygon, but more can be created.
 <div align="center">
-    <img src="https://github.com/kluless13/paper2/blob/main/Assets/polygon.gif">
+   <img src="https://github.com/kluless13/paper2/blob/main/Assets/polygon.gif">
 </div>
 
 Snippets of videos have been used to demonstrate the theory into practice. A simple version of the FishTally tool has been created into a CLI tool which can be used with ease. The source code can be adjusted accordingly.
