@@ -109,7 +109,7 @@ After identifying the correct class ID, you can proceed to use `fishtally.py`.
 
    - **Multiple Lines:**
      ```bash
-     python fishtally.py --model_weights weights.pt --source_video source.mp4 --target_video output.mp4 --detector_type multi_line --line_start 100 200 --line_end 300 400 --line_start2 500 600 --line_end2 700 800 --class_id 3
+     python fishtally.py --model_weights weights.pt --source_video source.mp4 --target_video output.mp4 --detector_type multi_line --line1_start 100 200 --line1_end 300 400 --line2_start 500 600 --line2_end 700 800 --class_id 3
      ```
 
    - **Polygon:**
