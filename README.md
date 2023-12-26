@@ -28,7 +28,7 @@ Ensure you have the following prerequisites installed on your system:
    cd paper2
    ```
 
-2. **Install ByteTrack**
+2. **Install Requirements**
 
    The `fishtally.py` tool relies on ByteTrack for object tracking. Run the provided setup script to clone and set up ByteTrack.
 
@@ -58,7 +58,7 @@ This repository contains tools for detecting and counting fish in video footage 
 
 Before using the fish tallying tool, you can list the available classes in your YOLO model. This will help you identify the correct class ID for detection.
 
-1. **List Classes**
+**List Classes**
 
    Run `list_classes.py` with the path to your model weights:
 
@@ -67,6 +67,17 @@ Before using the fish tallying tool, you can list the available classes in your 
    ```
 
    Replace `<path_to_weights>` with the path to your YOLO model weights file. This will print out the class names and their corresponding indices.
+
+### Checking frame to plot points 
+
+To make sure you know where to plot the ploints for your detector, use `frames.py` as mentioned below:
+
+
+**Frame Check**
+
+   ```bash
+   python frames.py --source_video <path_to_source_video.mp4> --save_ <path_to_reference_img.jpg>
+   ```
 
 ### Running the Fish Tallying Tool
 
@@ -136,7 +147,7 @@ Model trained on a multiclass dataset (listed below),
 - Classes: (1 check-mark: model tested on video specific to species; 2 check-marks: tracker built)
   - Blue-Tang, Paracanthurus hepatus
   - Orange-Clown, Amphiprion percula :white_check_mark:
-  - Three-Striped-Damselfish, Dascyllus aruanus :white_check_mark :white_check_mark:
+  - Three-Striped-Damselfish, Dascyllus aruanus :white_check_mark: :white_check_mark:
   - Yellow-Tang, Zebrasoma flavescens :white_check_mark: :white_check_mark:
 
 Result videos in Asset folder.

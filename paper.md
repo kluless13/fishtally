@@ -5,35 +5,14 @@ FishTally is highly customisable tool that can automate fish counting, at a spec
 - installed in ROVs and AUVs to conduct counting in real time
 - used outside of marine ecology, to survey sea floors, map the seabed and create a reliable baseline database
 
-CLI tool plan:
-- have a custom .py file with the right args
-- args: path to video/path to wts/path to detector type - single line/multi line/polygon
-- if: single line/set threshold level after checking matplotlib coords - 2 points
-- if: multi line/same procedure as before - multiple 2 points
-- if: polygon/as as before - 4 point arrays
-
-Limitations:
-- datasets for model training
-- model weights 
-- overfitting
-- video capturing techniques
-- source video quality
-
-___File Structure
-|
-|__ft_demo_single_line
-|
-|__ft_single_line_invasive
-|
-|__ft_custom_multiple_lines
-|
-|__ft_custom_polygon 
+Name pipeline: 
+Tool name FishTally.
 
 Notebooks with significance:
 - fishtally-demo-single-line -> using single line as a threshold to show pipeline works for single and multi class 
 - fishtally-invasive -> single line threshold applied to an invasive species
 - fishtally_demo_multio_lines ->
-- fishtally_polyon ->
+- fishtally_polygon ->
 
 What I have done so far:
 - ~compared yolov7 and yolov8 for an invasive species (Lionfish) and a marine pest (COTS)~
@@ -43,9 +22,14 @@ What I have done so far:
 - make polygon and track within that
 - address limitations
 
-What I would like to add:
+What I would like to add: all done
 - turn FishTally into CLI command to automate process
 - ~have weights ready for use~
+
+#TOADD4PAPER:
+- high level infrographic of yolov8
+- ByteTrack: hgh level arch and Kalman filters
+- supervision: open source library 
 
 ### Methodology
 
