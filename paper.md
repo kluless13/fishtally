@@ -1,35 +1,12 @@
-# Step 1 of using AI to replace marine scientists
+### Step 1 of using AI to replace marine scientists
 
-FishTally is highly customisable tool that can automate fish counting, at a species level. This tool can be:
-- used by marine ecologists to speed up and automate surveying to better study and understand population dynamics
-- installed in ROVs and AUVs to conduct counting in real time
-- used outside of marine ecology, to survey sea floors, map the seabed and create a reliable baseline database
-
-Name pipeline: 
-Tool name FishTally.
+FishTally is a customizable AI tool for automated fish counting at a species level. It's designed for marine ecologists to enhance surveying, understand population dynamics, and can be integrated into ROVs and AUVs for real-time counting. The tool is also versatile enough for seabed mapping and database creation beyond marine ecology. FishTally's development has involved comparing YOLOv7 and YOLOv8 models, creating a specific species tracking and counting algorithm, and applying it to lionfish. It uses YOLOv8 for its superior performance in complex scenarios like occlusion, and ByteTrack for effective multi-object tracking, crucial for accurate underwater detection. The tool operates in three modes—single line, multi line, and polygon zone—offering a range of counting thresholds that are customizable to various survey conditions. Despite its current limitations, such as the need for pre-loaded weights and untested performance on edge devices, FishTally is a practical solution for field and real-time applications. It is built upon a prototype that can be enhanced for specific tasks, like towed camera surveys or detailed population studies, ensuring accurate counts and minimizing common errors like double counting.
 
 Notebooks with significance:
 - fishtally-demo-single-line -> using single line as a threshold to show pipeline works for single and multi class 
 - fishtally-invasive -> single line threshold applied to an invasive species
-- fishtally_demo_multio_lines ->
-- fishtally_polygon ->
-
-What I have done so far:
-- ~compared yolov7 and yolov8 for an invasive species (Lionfish) and a marine pest (COTS)~
-- ~created a fish counting algorithm that tracks a specific species, and then counts automatically, but with only one line~
-- ~applied this process to the invasive lionfish species~
-- ~add more lines as thresholds to track and count fish movement~
-- make polygon and track within that
-- address limitations
-
-What I would like to add: all done
-- turn FishTally into CLI command to automate process
-- ~have weights ready for use~
-
-#TOADD4PAPER:
-- high level infrographic of yolov8
-- ByteTrack: hgh level arch and Kalman filters
-- supervision: open source library 
+- fishtally_demo_multi_lines -> two and three threshold lines
+- fishtally_polygon -> polygon zone
 
 ### Methodology
 
@@ -62,10 +39,3 @@ The tool has all components needed to customise it in any way one can think of, 
 - the CLI tool is built upon the prototype and can be enhanced and optimised based on the task at hand. A scenario where a camera is being towed to check for lionfish may call for an implementation where there are two or three lines strategically placed within the frame. Here the idea would be to accurately capture the presence of the species, rather than double counting. In a case where population dynamics are being studied, fish count needs to be as accurate as possible and for such a case, anti-double counting measures can be intelligently implemented, such as the in and out feature and/or threshold lines at the left and right edges of a forward moving camera's frame. 
 
 Ofc, this tool can be made better, prettier even but it works!
-
-### Discussion
-
-- model comparison results - best model for such a use case - yolov8 - a note on it's architecture
-- The nature of counting fish, time and labour intensive - if only there was a solution for this
-- FishTally's results on stock footage
-- The invasive species issue - single model problem - use FishTally
