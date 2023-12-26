@@ -76,7 +76,7 @@ To make sure you know where to plot the ploints for your detector, use `frames.p
 **Frame Check**
 
    ```bash
-   python frames.py --source_video <path_to_source_video.mp4> --save_ <path_to_reference_img.jpg>
+   python frames.py --source_video <path_to_source_video.mp4> --save_path <path_to_reference_img.jpg>
    ```
 
 ### Running the Fish Tallying Tool
