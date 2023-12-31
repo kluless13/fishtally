@@ -31,9 +31,10 @@ FishTally goes beyond a single line threshold, it contains source code to adjust
     .gif" width="49%"/>
 </div>
 
-Polygon zones can also be introduced to check species count in a particular zone. So far, FishTally has source code for 1 polygon, but more can be created.
+Polygon zones can also be introduced to check species count in a particular zone. More than one polygon (as many as the user inputs) can be used as well. 
 <div align="center">
-   <img src="https://github.com/kluless13/paper2/blob/main/Assets/polygon.gif">
+   <img src="https://github.com/kluless13/paper2/blob/main/Assets/polygon.gif" width="49%"/>
+  <img src="https://github.com/kluless13/paper2/blob/main/Assets/multipoly.gif" width="49%"/> 
 </div>
 
 Snippets of videos have been used to demonstrate the theory into practice. A simple version of the FishTally tool has been created into a CLI tool which can be used with ease. The source code can be adjusted accordingly.
@@ -55,7 +56,7 @@ Ensure you have the following prerequisites installed on your system:
    First, clone the repository containing the `fishtally.py` tool and its associated files to your local machine.
 
    ```bash
-   git clone https://github.com/kluless13/paper2.git
+   git clone https://github.com/kluless13/fishtally.git
    cd paper2
    ```
 

@@ -2,10 +2,12 @@ import argparse
 from ultralytics import YOLO
 import numpy as np
 import supervision as sv
+import cv2
 
 class CountObject:
 
     def __init__(self, input_video_path, output_video_path, model_weights, polygon_points, class_id):
+        self.model_weights = model_weights
         self.model = YOLO(model_weights)
         self.class_id = class_id
         
@@ -37,7 +39,7 @@ class CountObject:
     
     def process_video(self):
         sv.process_video(source_path=self.input_video_path, target_path=self.output_video_path, callback=self.process_frame)
-
+        
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Polygon-based Video Processing Tool')
     parser.add_argument('--source_video', required=True, help='Path to the source video file')

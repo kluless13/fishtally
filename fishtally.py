@@ -2,6 +2,7 @@ import argparse
 from single_line import single_line_threshold
 from multi_line import multi_line_threshold
 from polygon import CountObject
+from multi_polygon import CountMultiPolygon
 
 def main():
     parser = argparse.ArgumentParser(description='Fish Tallying Tool')
@@ -45,6 +46,11 @@ def main():
     elif args.detector_type == 'polygon':
         polygon_points = list(zip(args.polygon_points[0::2], args.polygon_points[1::2]))  # Convert flat list to list of tuples
         obj = CountObject(args.source_video, args.target_video, args.model_weights, polygon_points, args.class_id)
+        obj.process_video()
+    
+    elif args.detector_type == 'multi_polygon':
+        polygons = [list(zip(polygon[0::2], polygon[1::2])) for polygon in args.polygons]
+        obj = CountMultiPolygon(args.source_video, args.target_video, args.model_weights, polygons, args.class_id)
         obj.process_video()
 
 if __name__ == '__main__':
