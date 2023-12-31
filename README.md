@@ -143,12 +143,19 @@ After identifying the correct class ID, you can proceed to use `fishtally.py`.
      python fishtally.py --model_weights weights.pt --source_video source.mp4 --target_video output.mp4 --detector_type multi_line --line1_start 100 200 --line1_end 300 400 --line2_start 500 600 --line2_end 700 800 --class_id 3
      ```
 
-   - **Polygon:**
+   - **Single Polygon:**
      ```bash
      python fishtally.py --model_weights weights.pt --source_video source.mp4 --target_video output.mp4 --detector_type polygon --polygon_points 100 200 300 400 500 600 700 800 --class_id 3
      ```
 
     Replace the coordinates and the class ID in these examples with those relevant to your specific use case. Here is the arrangement of the coordinates: bottom left, top left, top right and bottom right.
+
+   - **Multiple Polygons:**
+     ```bash
+     python fishtally.py --model_weights weights.pt --source_video source.mp4 --target_video output.mp4 --detector_type multi_polygon --polygons 100 200 300 400 500 600 700 800 --polygons 100 200 300 400 500 600 700 800 --class_id 3
+     ```
+
+    Replace the coordinates and the class ID in these examples with those relevant to your specific use case. _You can add as many polygons as you want._ Here is the arrangement of the coordinates: bottom left, top left, top right and bottom right.
 
 4. **Viewing the Results**
 
