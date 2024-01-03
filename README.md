@@ -35,8 +35,7 @@ Here is a test to check if the tool worked at a multi-species level:
 FishTally goes beyond a single line threshold, it contains source code to adjust for more than one line, and keep a count for each line used.
 <div align="center">
    <img src="https://github.com/kluless13/fishtally/blob/main/Assets/2lines.gif" width="49%"/>
-   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/3lines
-    .gif" width="49%"/>
+   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/3lines.gif" width="49%"/>
 </div>
 
 Polygon zones can also be introduced to check species count in a particular zone. More than one polygon (as many as the user inputs) can be used as well. 
