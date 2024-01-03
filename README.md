@@ -2,6 +2,14 @@
 
 FishTally is a comprehensive AI-driven tool tailored for marine biology, streamlining the fish counting process to support ecological surveying and real-time monitoring. Developed using state-of-the-art YOLOv8 and ByteTrack technology, FishTally excels in environments with occlusions or species movement, efficiently distinguishing and tracking various marine life forms. From static cameras to mobile ROVs, its adaptable threshold mechanisms — single line, multi line, and polygon — offer ecologists and researchers versatile applications, from species-specific tracking to expansive seabed mapping. Though requiring pre-loaded weights and pending tests on edge devices, FishTally is poised to revolutionize data collection for aquatic population dynamics, promising accuracy and minimizing common enumeration errors.
 
+## Pipeline architecture
+
+<div align="center>
+   <img src="https://github.com/kluless13/paper2/blob/main/Assets/pipeline_aech.png">
+</div>
+
+## Demo
+
 Here is FishTally being used on a video of Yellow Tang.
 <div align="center">
    <img src="https://github.com/kluless13/paper2/blob/main/Assets/Tang-result.gif" width="49%"/>
