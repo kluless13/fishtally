@@ -5,44 +5,44 @@ FishTally is a comprehensive AI-driven tool tailored for marine biology, streaml
 ## Pipeline architecture
 
 <div align="center>
-   <img src="https://github.com/kluless13/paper2/blob/main/Assets/pipeline_arch.png">
+   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/pipeline_arch.png">
 </div>
 
 ## Demo
 
 Here is FishTally being used on a video of Yellow Tang.
 <div align="center">
-   <img src="https://github.com/kluless13/paper2/blob/main/Assets/Tang-result.gif" width="49%"/>
-   <img src="https://github.com/kluless13/paper2/blob/main/Assets/tang-tracker%20(2).gif" width="49%"/>
+   <img src="https://github.com/kluless13/ƒishtally/blob/main/Assets/Tang-result.gif" width="49%"/>
+   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/tang-tracker%20(2).gif" width="49%"/>
 </div>
 
 FishTally's tracker has also been used for other classes, here is an example for the three-striped damselfish.
 <div align="center">
-   <img src="https://github.com/kluless13/paper2/blob/main/Assets/damselfish.gif" width="49%"/>
-   <img src="https://github.com/kluless13/paper2/blob/main/Assets/damselfish-tracker.gif" width="49%"/>
+   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/damselfish.gif" width="49%"/>
+   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/damselfish-tracker.gif" width="49%"/>
 </div>
 
 An example for FishTally would be to use it to count invasive species, such as Lionfish.
 <div align="center">
-   <img src="https://github.com/kluless13/paper2/blob/main/Assets/lionfish.gif">
+   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/lionfish.gif">
 </div>
 
 Here is a test to check if the tool worked at a multi-species level:
 <div align="center">
-   <img src="https://github.com/kluless13/paper2/blob/main/Assets/multiclass.gif">
+   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/multiclass.gif">
 </div>
 
 FishTally goes beyond a single line threshold, it contains source code to adjust for more than one line, and keep a count for each line used.
 <div align="center">
-   <img src="https://github.com/kluless13/paper2/blob/main/Assets/2lines.gif" width="49%"/>
-   <img src="https://github.com/kluless13/paper2/blob/main/Assets/3lines
+   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/2lines.gif" width="49%"/>
+   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/3lines
     .gif" width="49%"/>
 </div>
 
 Polygon zones can also be introduced to check species count in a particular zone. More than one polygon (as many as the user inputs) can be used as well. 
 <div align="center">
-   <img src="https://github.com/kluless13/paper2/blob/main/Assets/polygon.gif" width="49%"/>
-  <img src="https://github.com/kluless13/paper2/blob/main/Assets/multipoly.gif" width="49%"/> 
+   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/polygon.gif" width="49%"/>
+  <img src="https://github.com/kluless13/fishtally/blob/main/Assets/multipoly.gif" width="49%"/> 
 </div>
 
 Snippets of videos have been used to demonstrate the theory into practice. A simple version of the FishTally tool has been created into a CLI tool which can be used with ease. The source code can be adjusted accordingly.
