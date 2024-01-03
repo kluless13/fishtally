@@ -5,7 +5,7 @@ FishTally is a comprehensive AI-driven tool tailored for marine biology, streaml
 ## Pipeline architecture
 
 <div align="center>
-   <img src="https://github.com/kluless13/paper2/blob/main/Assets/pipeline_aech.png">
+   <img src="https://github.com/kluless13/paper2/blob/main/Assets/pipeline_arch.png">
 </div>
 
 ## Demo
