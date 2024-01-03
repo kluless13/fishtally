@@ -4,15 +4,15 @@ FishTally is a comprehensive AI-driven tool tailored for marine biology, streaml
 
 ## Pipeline architecture
 
-<div align="center>
-   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/pipeline_arch.png">
+<div align="center">
+   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/pipeline_arch.png"  width="100%">
 </div>
 
 ## Demo
 
 Here is FishTally being used on a video of Yellow Tang.
 <div align="center">
-   <img src="https://github.com/kluless13/ƒishtally/blob/main/Assets/Tang-result.gif" width="49%"/>
+   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/Tang-result.gif" width="49%"/>
    <img src="https://github.com/kluless13/fishtally/blob/main/Assets/tang-tracker%20(2).gif" width="49%"/>
 </div>
 
