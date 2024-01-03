@@ -95,7 +95,7 @@ This repository contains tools for detecting and counting fish in video footage 
 
 ### Listing Available Classes
 
-Before using the fish tallying tool, you can list the available classes in your YOLO model. This will help you identify the correct class ID for detection. [This is the weights file: https://github.com/kluless13/paper2/blob/main/Assets/multiclass-wts.pt]
+Before using the fish tallying tool, you can list the available classes in your YOLO model. This will help you identify the correct class ID for detection. [This is the weights file: https://github.com/kluless13/fishtally/blob/main/Assets/multiclass-wts.pt]
 
 **List Classes**
 
