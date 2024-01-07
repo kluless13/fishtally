@@ -16,12 +16,6 @@ Here is FishTally being used on a video of Yellow Tang.
    <img src="https://github.com/kluless13/fishtally/blob/main/Assets/tang-tracker%20(2).gif" width="49%"/>
 </div>
 
-FishTally's tracker has also been used for other classes, here is an example for the three-striped damselfish.
-<div align="center">
-   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/damselfish.gif" width="49%"/>
-   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/damselfish-tracker.gif" width="49%"/>
-</div>
-
 An example for FishTally would be to use it to count invasive species, such as Lionfish.
 <div align="center">
    <img src="https://github.com/kluless13/fishtally/blob/main/Assets/lionfish.gif">
