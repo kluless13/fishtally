@@ -58,7 +58,7 @@ Ensure you have the following prerequisites installed on your system:
 
    ```bash
    git clone https://github.com/kluless13/fishtally.git
-   cd paper2
+   cd fishtally
    ```
 
 2. **Install Requirements**
