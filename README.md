@@ -40,9 +40,9 @@ Polygon zones can also be introduced to check species count in a particular zone
 
 Snippets of videos have been used to demonstrate the theory into practice. A simple version of the FishTally tool has been created into a CLI tool which can be used with ease. The source code can be adjusted accordingly.
 
-## Setup Guide
+# Setup Guide
 
-### Prerequisites
+## Prerequisites
 
 Ensure you have the following prerequisites installed on your system:
 
@@ -51,6 +51,7 @@ Ensure you have the following prerequisites installed on your system:
 - Pip (Python package manager)
 
 ### Installation Steps
+Follow along.
 
 1. **Clone the Repository**
 
@@ -72,13 +73,45 @@ Ensure you have the following prerequisites installed on your system:
 
 3. **Verification**
 
-   To verify that the installation is successful, you can run a simple test command or check the versions of critical components like Python, Git, and Pip.
+   To verify that the installation is successful, you can run a simple test command or check the versions of critical components like Python, Git, and Pip. (not important)
 
    ```bash
    python --version
    git --version
    pip --version
    ```
+# Quick demo of FishTally on a video of Yellow Tang
+
+**Follow the code, copy paste one after the other**
+
+First we check the classes present in the model's weights, using the `list_classes.py` script.
+
+```bash
+python list_classes.py --model_weights ~/fishtally/Assets/multiclass-wts.pt
+```
+
+Now that we know we are after class ID '3', we can take a look at our video and check to see how to create tigger threshold boundaries, using the `frames.py` script.
+
+Rename the image to whatever you want.
+
+```bash
+python frames.py --source_video ~/fishtally/Assets/tangtest.mp4 --save_path ~/fishtally/Assets/tangtest_1.jpg
+```
+
+*Press 's' to save the image to examine it. Now you can identify points to plot your threshold triggers.*
+
+Now we use a single line threshold detector at point A (100,100) and point B (1100,600). [Points read as (x,y)]
+This is a diagnonal line that is going to cut across the screen for maximum coverage.
+Threshold points can be chosen based on camera movement, it should be straightforward for survey transects.
+
+Let's tally some fish!
+
+```bash
+python fishtally.py --model_weights ~/fishtally/Assets/multiclass-wts.pt --source_video ~/fishtally/Assets/tangtest.mp4 --target_video ~/fishtally/Assets/demo_1.mp4 --detector_type single_line --line_start 100 100 --line_end 1100 600 --class_id 3
+```
+You can change the name of the output file.
+
+**Congratulations, you've automated fish count! 🥳**
 
 # Running FishTally
 
@@ -111,7 +144,7 @@ To make sure you know where to plot the ploints for your detector, use `frames.p
    python frames.py --source_video <path_to_source_video.mp4> --save_path <path_to_reference_img.jpg>
    ```
 
-### Running the Fish Tallying Tool
+### Fishtally in depth
 
 After identifying the correct class ID, you can proceed to use `fishtally.py`.
 
@@ -169,3 +202,17 @@ After identifying the correct class ID, you can proceed to use `fishtally.py`.
 - The tool can be used from the jupyter notebooks as well, in case more customisation is required.
 - Model weights are necessary before running the tool.
 - There can be more than 1 polygon, this is the first iteration of FishTally and I will be updating this as I go.
+
+
+### Current specs
+
+- Single, multi and multi polygon set up to identify, track and count species.
+- In and Out counter present in source code, not applied to CLI version - I&O used to mitigate double counting.
+- Backbone is a lightweight YOLOv8 engine (object detection only), can be used for fish species, coral species, incoming bodies such as missles (for naval drone ops) and other debris that needs tracking and counting.
+
+### What I want to add
+
+- Semantic segmentation, especially for corals.
+- Pipeline for 3D construction in real time.
+- Integrate information into database for long term use case.
+- Possibly create a front end UI for users to drop videos and run the tool.
