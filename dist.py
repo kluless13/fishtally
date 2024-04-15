@@ -5,6 +5,7 @@ import cv2
 
 def process_video(input_video_path, output_video_path, model_weights):
     # Load the YOLO model with specified weights
+    model = YOLO("yolov8n.pt")
     model = YOLO(model_weights)
     names = model.model.names
 
@@ -50,4 +51,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     process_video(args.input_video_path, args.output_video_path, args.model_weights)
-
