@@ -1,11 +1,10 @@
 import argparse
 from ultralytics import YOLO
-from ultralytics.solutions import distance_calculation
+from distance_calculator import DistanceCalculation
 import cv2
 
 def process_video(input_video_path, output_video_path, model_weights):
     # Load the YOLO model with specified weights
-    model = YOLO("yolov8n.pt")
     model = YOLO(model_weights)
     names = model.model.names
 
@@ -22,7 +21,7 @@ def process_video(input_video_path, output_video_path, model_weights):
                                    (w, h))
 
     # Initialize distance calculation object
-    dist_obj = distance_calculation.DistanceCalculation()
+    dist_obj = DistanceCalculation()
     dist_obj.set_args(names=names, view_img=True)
 
     # Process video frames
