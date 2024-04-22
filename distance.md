@@ -2,10 +2,7 @@
 
 However, creating a utility where users can input camera specifications to automatically calculate the field of view (FOV) and subsequently use this to determine the scale of pixels per meter or centimeter is a very practical and useful approach. This method can help in automatically adjusting the measurement scale based on different camera setups without manual calibration.
 
-Distance from the camera via `dist.py`.
-<div align="center">
-   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/lionfish_distance.gif">
-</div>
+Distance from the camera via `dist.py`: https://github.com/kluless13/fishtally/blob/main/Assets/lionfish_distance.gif
 
 Here's a breakdown of what the code can do and how to structure it:
 
