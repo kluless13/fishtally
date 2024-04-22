@@ -38,6 +38,12 @@ Polygon zones can also be introduced to check species count in a particular zone
   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/multipoly.gif" width="49%"/> 
 </div>
 
+Distance from the camera via `dist.py`.
+<div align="center">
+   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/lionfish_distance.gif" width="49%"/>
+  <img src="https://github.com/kluless13/fishtally/blob/main/Assets/dam_dist.gif" width="49%"/> 
+</div>
+
 Snippets of videos have been used to demonstrate the theory into practice. A simple version of the FishTally tool has been created into a CLI tool which can be used with ease. The source code can be adjusted accordingly.
 
 # Setup Guide
