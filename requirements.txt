@@ -2,7 +2,7 @@ numpy
 opencv-python
 torch
 YOLO
-ultralytics
+ultralytics >= 8.0.222
 matplotlib
 supervision
 cython_bbox

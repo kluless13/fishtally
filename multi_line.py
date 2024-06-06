@@ -2,8 +2,7 @@ import cv2
 from collections import defaultdict
 import supervision as sv
 from ultralytics import YOLO
-import numpy as np
-from tqdm import tqdm
+
 
 def multi_line_threshold(model_weights, source_video_path, target_video_path, line1_start, line1_end, line2_start, line2_end, class_id):
     # Load the YOLOv8 model
@@ -33,36 +32,40 @@ def multi_line_threshold(model_weights, source_video_path, target_video_path, li
             if not success:
                 break
 
+            # Initialize annotated_frame with the current frame
+            annotated_frame = frame.copy()
+
             # Run YOLOv8 tracking on the frame
             results = model.track(frame, classes=[class_id], persist=True, save=True, tracker="bytetrack.yaml")
 
             # Process detections and tracks
-            boxes = results[0].boxes.xywh.cpu()
-            track_ids = results[0].boxes.id.int().cpu().tolist()
+            if results[0].boxes is not None and getattr(results[0].boxes, 'id', None) is not None:
+                boxes = results[0].boxes.xywh.cpu()
+                track_ids = results[0].boxes.id.int().cpu().tolist()
 
-            annotated_frame = results[0].plot()
+                annotated_frame = results[0].plot()
 
-            # Count objects crossing each line
-            for box, track_id in zip(boxes, track_ids):
-                x, y, w, h = box.numpy()
-                track = track_history[track_id]
-                track.append((x, y))  # x, y center point
+                # Count objects crossing each line
+                for box, track_id in zip(boxes, track_ids):
+                    x, y, w, h = box.numpy()
+                    track = track_history[track_id]
+                    track.append((x, y))  # x, y center point
 
-                if len(track) > 30:  # retain 30 tracks for 30 frames
-                    track.pop(0)
+                    if len(track) > 30:  # retain 30 tracks for 30 frames
+                        track.pop(0)
 
-                # Check if the object crosses the first line
-                if START.x < x < END.x and abs(y - START.y) < 5:
-                    if track_id not in crossed_objects:
-                        crossed_objects[track_id] = True
+                    # Check if the object crosses the first line
+                    if START.x < x < END.x and abs(y - START.y) < 5:
+                        if track_id not in crossed_objects:
+                            crossed_objects[track_id] = True
 
-                # Check if the object crosses the second line
-                if START2.x < x < END2.x and abs(y - START2.y) < 5:
-                    if track_id not in crossed_objects2:
-                        crossed_objects2[track_id] = True
+                    # Check if the object crosses the second line
+                    if START2.x < x < END2.x and abs(y - START2.y) < 5:
+                        if track_id not in crossed_objects2:
+                            crossed_objects2[track_id] = True
 
-                    # Annotate the object as it crosses the line
-                    cv2.rectangle(annotated_frame, (int(x - w / 2), int(y - h / 2)), (int(x + w / 2), int(y + h / 2)), (0, 255, 0), 2)
+                        # Annotate the object as it crosses the line
+                        cv2.rectangle(annotated_frame, (int(x - w / 2), int(y - h / 2)), (int(x + w / 2), int(y + h / 2)), (0, 255, 0), 2)
 
             # Draw the lines and write the counts on the frame
             cv2.line(annotated_frame, (START.x, START.y), (END.x, END.y), (0, 255, 0), 2)

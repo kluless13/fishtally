@@ -10,32 +10,39 @@ FishTally is a comprehensive AI-driven tool tailored for marine biology, streaml
 
 ## Demo
 
-Here is FishTally being used on a video of Yellow Tang.
+#### Here is FishTally being used on a video of Yellow Tang.
 <div align="center">
    <img src="https://github.com/kluless13/fishtally/blob/main/Assets/Tang-result.gif" width="49%"/>
    <img src="https://github.com/kluless13/fishtally/blob/main/Assets/tang-tracker%20(2).gif" width="49%"/>
 </div>
 
-An example for FishTally would be to use it to count invasive species, such as Lionfish.
+#### An example for FishTally would be to use it to count invasive species, such as Lionfish.
 <div align="center">
    <img src="https://github.com/kluless13/fishtally/blob/main/Assets/lionfish.gif">
 </div>
 
-Here is a test to check if the tool worked at a multi-species level:
+#### Here is a test to check if the tool worked at a multi-species level:
 <div align="center">
    <img src="https://github.com/kluless13/fishtally/blob/main/Assets/multiclass.gif">
 </div>
 
-FishTally goes beyond a single line threshold, it contains source code to adjust for more than one line, and keep a count for each line used.
+#### FishTally goes beyond a single line threshold, it contains source code to adjust for more than one line, and keep a count for each line used.
 <div align="center">
    <img src="https://github.com/kluless13/fishtally/blob/main/Assets/2lines.gif" width="49%"/>
    <img src="https://github.com/kluless13/fishtally/blob/main/Assets/3lines.gif" width="49%"/>
 </div>
 
-Polygon zones can also be introduced to check species count in a particular zone. More than one polygon (as many as the user inputs) can be used as well. 
+#### Polygon zones can also be introduced to check species count in a particular zone. More than one polygon (as many as the user inputs) can be used as well. 
 <div align="center">
    <img src="https://github.com/kluless13/fishtally/blob/main/Assets/polygon.gif" width="49%"/>
   <img src="https://github.com/kluless13/fishtally/blob/main/Assets/multipoly.gif" width="49%"/> 
+</div>
+
+#### Distance from the camera via `dist.py`:
+
+<div align="center">
+   <img src="https://github.com/kluless13/fishtally/blob/test/Assets/lionfish_distance.gif" width="49%"/>
+  <img src="https://github.com/kluless13/fishtally/blob/test/Assets/dam_dist.gif" width="49%"/> 
 </div>
 
 Snippets of videos have been used to demonstrate the theory into practice. A simple version of the FishTally tool has been created into a CLI tool which can be used with ease. The source code can be adjusted accordingly.

@@ -9,9 +9,10 @@ def main():
     parser.add_argument('--model_weights', required=True, help='Path to the model weights file')
     parser.add_argument('--source_video', required=True, help='Path to the source video file')
     parser.add_argument('--target_video', required=True, help='Path for the output video file')
-    parser.add_argument('--detector_type', required=True, choices=['single_line', 'multi_line', 'polygon','multi_polygon'], help='Type of detector to use')
+    parser.add_argument('--detector_type', required=True, choices=['single_line', 'multi_line', 'polygon', 'multi_polygon'], help='Type of detector to use')
     # Updated to accept multiple class IDs
-    parser.add_argument('--class_id', nargs='+', type=int, required=True, help='Class ID(s) to track') 
+    parser.add_argument('--class_id', nargs='+', type=int, required=True, help='Class ID(s) to track')
+    # For simplicity, threshold settings are added as optional arguments. You can further customize as needed.
     parser.add_argument('--line_start', nargs=2, type=int, help='Start coordinates of the line (x, y)', default=[0, 0])
     parser.add_argument('--line_end', nargs=2, type=int, help='End coordinates of the line (x, y)', default=[100, 100])
     parser.add_argument('--line1_start', nargs=2, type=int, help='Start coordinates of the first line (x, y)')
@@ -51,4 +52,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
