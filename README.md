@@ -1,7 +1,8 @@
 # FishTally
 
-FishTally is a comprehensive AI-driven tool tailored for marine biology, streamlining the fish counting process to support ecological surveying and real-time monitoring. Developed using state-of-the-art YOLOv8 and ByteTrack technology, FishTally excels in environments with occlusions or species movement, efficiently distinguishing and tracking various marine life forms. From static cameras to mobile ROVs, its adaptable threshold mechanisms — single line, multi line, and polygon — offer ecologists and researchers versatile applications, from species-specific tracking to expansive seabed mapping. Though requiring pre-loaded weights and pending tests on edge devices, FishTally is poised to revolutionize data collection for aquatic population dynamics, promising accuracy and minimizing common enumeration errors.
-
+Accurate fish population monitoring is vital for sustainable aquaculture management and marine ecological research. Traditional manual fish counting is labour-intensive and prone to errors, often leading to unreliable data and inefficiencies in decision-making. To address these challenges, FishTally leverages advanced computer vision techniques, specifically YOLOv8 for high-precision object detection and ByteTrack for robust multi-object tracking. By integrating these state-of-the-art deep learning models, FishTally ensures accurate species-specific fish counting in both controlled aquaculture settings and complex natural marine environments. 
+FishTally’s architecture combines real-time detection and association-based tracking, allowing it to maintain high accuracy even under challenging conditions such as occlusion, varying lighting, and water turbidity. Its customisable command-line interface enables users to fine-tune detection thresholds using lines or polygons, making it adaptable to diverse aquatic habitats and experimental setups. Additionally, its ability to process continuous video streams allows for dynamic fish population analysis over time. 
+FishTally enhances data reliability, minimises human errors, and reduces operational costs by automating fish counting. The system has been rigorously evaluated using datasets like DeepFish, demonstrating strong statistical performance with high precision and recall rates across both single-species (Caranx sexfasciatus) and multi-species (Acanthopagrus palmaris and Lutjanus russellii) models. Its real-time processing capabilities provide significant advantages for time-sensitive decision-making in aquaculture and ecological research. By overcoming the limitations of traditional fish counting methods, FishTally represents a technological advancement in marine resource management, with promising applications in fishery regulation, biodiversity conservation, and sustainable aquaculture practices. 
 ## Pipeline architecture
 
 <div align="center">
@@ -49,7 +50,7 @@ Snippets of videos have been used to demonstrate the theory into practice. A sim
 
 # Setup Guide
 
-## Prerequisites
+#### Prerequisites
 
 Ensure you have the following prerequisites installed on your system:
 
@@ -58,7 +59,6 @@ Ensure you have the following prerequisites installed on your system:
 - Pip (Python package manager)
 
 ### Installation Steps
-Follow along.
 
 1. **Clone the Repository**
 
@@ -80,16 +80,14 @@ Follow along.
 
 3. **Verification**
 
-   To verify that the installation is successful, you can run a simple test command or check the versions of critical components like Python, Git, and Pip. (not important)
+   Once successful, you should get a message which says "Setup complete." within your terminal.
+---
 
-   ```bash
-   python --version
-   git --version
-   pip --version
-   ```
 # Quick demo of FishTally on a video of Yellow Tang
 
 **Follow the code, copy paste one after the other**
+
+(Easily reproduce the code to try it out yourself - model weights and videos from the 'Assets' folder have been plugged into the snippets.)
 
 First we check the classes present in the model's weights, using the `list_classes.py` script.
 
@@ -118,7 +116,7 @@ python fishtally.py --model_weights ~/fishtally/Assets/multiclass-wts.pt --sourc
 ```
 You can change the name of the output file.
 
-**Congratulations, you've automated fish count! 🥳**
+**Congratulations, you've automated fish counting! 🥳**
 
 # Running FishTally
 
